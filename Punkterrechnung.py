@@ -18,3 +18,9 @@ class Spielpunkte:
         else:
             return 0
 
+
+if __name__ == '__main__':
+    spiel1 = Spielpunkte(0,0,1,1)
+    print(spiel1.punkteberechnung())
+    spiel2 = Spielpunkte(2,1,2,0)
+    print(spiel2.punkteberechnung())
