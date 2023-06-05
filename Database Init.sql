@@ -3,46 +3,46 @@
 BEGIN;
 
 
-CREATE TABLE IF NOT EXISTS public."User"
+CREATE TABLE IF NOT EXISTS public.users
 (
-    "ID" serial,
-    "Username" "char",
-    "Punktstand" integer NOT NULL DEFAULT 0,
-    PRIMARY KEY ("ID")
+    id serial,
+    username "char",
+    punktstand integer NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public."Spiele"
+CREATE TABLE IF NOT EXISTS public.spiele
 (
-    "ID" serial,
-    "Spieltag" integer NOT NULL,
-    "Heimteam" "char" NOT NULL,
-    "Auswärtsteam" "char" NOT NULL,
-    "Heimtore" integer NOT NULL DEFAULT 0,
-    "Auswärsttore" integer NOT NULL DEFAULT 0,
-    PRIMARY KEY ("ID")
+    id serial,
+    spieltag integer NOT NULL,
+    heimteam "char" NOT NULL,
+    "auswärtsteam" "char" NOT NULL,
+    heimtore integer NOT NULL DEFAULT 0,
+    "auswärsttore" integer NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public."Tipps"
+CREATE TABLE IF NOT EXISTS public.tipps
 (
-    "User" serial,
-    "Spiel" serial,
-    "Tipp Heimtore" integer,
-    "Tipp Auswärtstore" integer,
-    "Aktuelle Punkte" integer,
-    PRIMARY KEY ("User", "Spiel")
+    userid serial,
+    spielid serial,
+    tippheimtore integer,
+    "tippauswärtstore" integer,
+    punkte integer,
+    PRIMARY KEY (userid, spielid)
 );
 
-ALTER TABLE IF EXISTS public."Tipps"
-    ADD CONSTRAINT "ID" FOREIGN KEY ("User")
-    REFERENCES public."User" ("ID") MATCH SIMPLE
+ALTER TABLE IF EXISTS public.tipps
+    ADD CONSTRAINT "user id" FOREIGN KEY (userid)
+    REFERENCES public.users (id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public."Tipps"
-    ADD CONSTRAINT "Spiel ID" FOREIGN KEY ("Spiel")
-    REFERENCES public."Spiele" ("ID") MATCH SIMPLE
+ALTER TABLE IF EXISTS public.tipps
+    ADD CONSTRAINT "spiel id" FOREIGN KEY (spielid)
+    REFERENCES public.spiele (id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
