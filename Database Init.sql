@@ -6,7 +6,7 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS public.users
 (
     id serial,
-    username "char",
+    username character varying(256),
     punktstand integer NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS public.spiele
 (
     id serial,
     spieltag integer NOT NULL,
-    heimteam "char" NOT NULL,
-    "auswärtsteam" "char" NOT NULL,
+    heimteam character varying(256) NOT NULL,
+    "auswärtsteam" character varying(256) NOT NULL,
     heimtore integer NOT NULL DEFAULT 0,
     "auswärsttore" integer NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
